@@ -15,15 +15,15 @@
     }
 
     h1 {
-      font-size: 16px;
-      cursor: pointer;
       color: #900;
+      cursor: pointer;
+      font-size: 1rem;
     }
 
-    p, li {
-      font-size: 12px;
-      cursor: pointer;
+    :is(p, li) {
       color: #333;
+      cursor: pointer;
+      font-size: 0.75rem;
     }
 
     li:hover {
@@ -31,32 +31,17 @@
     }
 
     ul {
-      list-style-position: inside;
       padding: 0;
       line-height: 2;
+      list-style-position: inside;
     }
 
-    @media (min-width: 700px) {
-      .my-grid {
+    .my-grid {
+      @media (width >= 700px) {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
-
-      .my-grid ul:nth-child(3n + 1) {
-        grid-column: 1;
-      }
-
-      .my-grid ul:nth-child(3n + 2) {
-        grid-column: 2;
-      }
-
-      .my-grid ul:nth-child(3n + 3) {
-        grid-column: 3;
-      }
-
     }
-
   </style>
 </head>
 
