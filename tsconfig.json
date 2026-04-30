@@ -10,11 +10,12 @@
     // switchステートメントでフォールスルーケースのエラーを報告
     "noFallthroughCasesInSwitch": true,
     "module": "ES2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": true,
     "declaration": true,
+    "rootDir": "./src",
     "target": "ES2020",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
@@ -30,4 +31,3 @@
     "node_modules"
   ]
 }
-

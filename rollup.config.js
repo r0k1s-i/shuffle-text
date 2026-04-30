@@ -1,9 +1,14 @@
-import typescript from 'rollup-plugin-typescript';
+import typescript from '@rollup/plugin-typescript';
 
 export default {
   input: 'src/ShuffleText.ts',
   plugins: [
-    typescript()
+    typescript({
+      compilerOptions: {
+        declaration: false,
+        sourceMap: false
+      }
+    })
   ],
   output: [
     {
