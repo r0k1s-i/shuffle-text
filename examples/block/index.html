@@ -40,6 +40,15 @@
       font-family: "Monaco", monospace;
     }
 
+    .demo-grid {
+      display: grid;
+      gap: 40px 64px;
+
+      @media (width >= 900px) {
+        grid-template-columns: repeat(2, max-content);
+      }
+    }
+
     section {
       display: grid;
       gap: 24px;
@@ -63,6 +72,7 @@
       line-height: 1.5;
       letter-spacing: 0;
       text-align: left;
+      white-space: nowrap;
     }
 
     :is(h1, h2) {
@@ -79,25 +89,27 @@
 </head>
 <body>
 <h1 class="my-effect font-intel-one-mono">TEXT SHUFFLE</h1>
-<section class="font-intel-one-mono" data-random-character="░▒▓█">
-  <h2 class="my-effect">Font: Intel One Mono</h2>
-  <p class="my-effect">This section uses Intel One Mono with sourceRandomCharacter = "░▒▓█".</p>
-  <p class="my-effect">Move the pointer over each line to replay the block character effect.</p>
-</section>
-<section class="font-google-sans-code" data-random-character="░▒▓█">
-  <h2 class="my-effect">Font: Google Sans Code</h2>
-  <p class="my-effect">This section uses Google Sans Code with sourceRandomCharacter = "░▒▓█".</p>
-  <p class="my-effect">Move the pointer over each line to compare the rendering.</p>
-</section>
-<section class="font-intel-one-mono" data-random-character="▁▂▃▄▅▆▇█">
-  <h2 class="my-effect">Lower Block Steps</h2>
-  <p class="my-effect">This section uses vertical block heights: "▁▂▃▄▅▆▇█".</p>
-  <p class="my-effect">These characters create a bottom-to-top gradient-like texture.</p>
-</section>
-<section class="font-cascadia-code" data-random-character="⠁⠃⠇⡇⣇⣧⣿">
-  <h2 class="my-effect">Braille Density</h2>
-  <p class="my-effect">This section uses Braille patterns as a density ramp: "⠁⠃⠇⡇⣇⣧⣿".</p>
-  <p class="my-effect">Braille can produce fine texture, but rendering depends more on the font.</p>
-</section>
+<div class="demo-grid">
+  <section class="font-intel-one-mono" data-random-character="░▒▓█">
+    <h2 class="my-effect">Font: Intel One Mono</h2>
+    <p class="my-effect">This section uses Intel One Mono with sourceRandomCharacter = "░▒▓█".</p>
+    <p class="my-effect">Move the pointer over each line to replay the block character effect.</p>
+  </section>
+  <section class="font-google-sans-code" data-random-character="░▒▓█">
+    <h2 class="my-effect">Font: Google Sans Code</h2>
+    <p class="my-effect">This section uses Google Sans Code with sourceRandomCharacter = "░▒▓█".</p>
+    <p class="my-effect">Move the pointer over each line to compare the rendering.</p>
+  </section>
+  <section class="font-intel-one-mono" data-random-character="▁▂▃▄▅▆▇█">
+    <h2 class="my-effect">Lower Block Steps</h2>
+    <p class="my-effect">This section uses vertical block heights: "▁▂▃▄▅▆▇█".</p>
+    <p class="my-effect">These characters create a bottom-to-top gradient-like texture.</p>
+  </section>
+  <section class="font-cascadia-code" data-random-character="⠁⠃⠇⡇⣇⣧⣿">
+    <h2 class="my-effect">Braille Density</h2>
+    <p class="my-effect">This section uses Braille patterns as a density ramp: "⠁⠃⠇⡇⣇⣧⣿".</p>
+    <p class="my-effect">Braille can produce fine texture, but rendering depends more on the font.</p>
+  </section>
+</div>
 </body>
 </html>
