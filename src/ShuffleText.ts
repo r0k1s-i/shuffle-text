@@ -28,6 +28,16 @@ export default class ShuffleText {
       KANGXI:   [0x2f00, 0x2fdf] as [number, number],
       UNIFIED:  [0x4e00, 0x9fff] as [number, number],
     },
+    EMOJI: {
+      EMOTICONS: [0x1F600, 0x1F64F] as [number, number],
+      SYMBOLS:   [0x1F300, 0x1F5FF] as [number, number],
+      TRANSPORT: [0x1F680, 0x1F6FF] as [number, number],
+      PEOPLE:    [0x1F900, 0x1F9FF] as [number, number],
+      MISC:      [0x2600,  0x26FF ] as [number, number],
+    },
+    HIEROGLYPHS: {
+      EGYPTIAN:  [0x13000, 0x1342F] as [number, number],
+    },
   } as const;
 
   /**
