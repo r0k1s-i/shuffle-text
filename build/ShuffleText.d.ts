@@ -5,6 +5,20 @@
  * @since 2012-02-07
  */
 export default class ShuffleText {
+    static readonly MODE: {
+        readonly CHARS: "chars";
+        readonly RANGES: "ranges";
+        readonly MIXED: "mixed";
+    };
+    static readonly RANGES: {
+        readonly CJK: {
+            readonly RARE_A: [number, number];
+            readonly COMPAT: [number, number];
+            readonly RADICALS: [number, number];
+            readonly KANGXI: [number, number];
+            readonly UNIFIED: [number, number];
+        };
+    };
     /**
      * The string for random text.
      * ランダムテキストに用いる文字列です。
