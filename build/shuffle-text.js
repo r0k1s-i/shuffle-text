@@ -202,6 +202,16 @@
             KANGXI: [0x2f00, 0x2fdf],
             UNIFIED: [0x4e00, 0x9fff],
         },
+        EMOJI: {
+            EMOTICONS: [0x1F600, 0x1F64F],
+            SYMBOLS: [0x1F300, 0x1F5FF],
+            TRANSPORT: [0x1F680, 0x1F6FF],
+            PEOPLE: [0x1F900, 0x1F9FF],
+            MISC: [0x2600, 0x26FF],
+        },
+        HIEROGLYPHS: {
+            EGYPTIAN: [0x13000, 0x1342F],
+        },
     };
 
     return ShuffleText;
