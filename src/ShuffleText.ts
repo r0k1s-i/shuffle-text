@@ -56,7 +56,7 @@ export default class ShuffleText {
    * Use ShuffleText.MODE constants to set this value.
    * @default ShuffleText.MODE.CHARS
    */
-  public characterMode: 'chars' | 'ranges' | 'mixed' = ShuffleText.MODE.CHARS;
+  public characterMode: (typeof ShuffleText.MODE)[keyof typeof ShuffleText.MODE] = ShuffleText.MODE.CHARS;
   /**
    * Unicode code point ranges to draw from when characterMode is RANGES or MIXED.
    * Each entry is a [start, end] inclusive tuple. Use ShuffleText.RANGES presets or provide custom tuples.
