@@ -5,6 +5,22 @@
  * @since 2012-02-07
  */
 export default class ShuffleText {
+  public static readonly MODE = {
+    CHARS:  'chars',
+    RANGES: 'ranges',
+    MIXED:  'mixed',
+  } as const;
+
+  public static readonly RANGES = {
+    CJK: {
+      RARE_A:   [0x3400, 0x4dbf] as [number, number],
+      COMPAT:   [0xf900, 0xfaff] as [number, number],
+      RADICALS: [0x2e80, 0x2eff] as [number, number],
+      KANGXI:   [0x2f00, 0x2fdf] as [number, number],
+      UNIFIED:  [0x4e00, 0x9fff] as [number, number],
+    },
+  } as const;
+
   /**
    * The string for random text.
    * ランダムテキストに用いる文字列です。
