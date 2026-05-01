@@ -5,12 +5,21 @@
  * @since 2012-02-07
  */
 export default class ShuffleText {
+  /**
+   * Character mode constants for controlling the random character source.
+   * @see characterMode
+   */
   public static readonly MODE = {
     CHARS:  'chars',
     RANGES: 'ranges',
     MIXED:  'mixed',
   } as const;
 
+  /**
+   * Predefined Unicode code point ranges, grouped by script.
+   * Each entry is a `[start, end]` inclusive tuple.
+   * @see unicodeRanges
+   */
   public static readonly RANGES = {
     CJK: {
       RARE_A:   [0x3400, 0x4dbf] as [number, number],
@@ -42,7 +51,17 @@ export default class ShuffleText {
    * @default 600
    */
   public duration: number = 600;
+  /**
+   * Controls which character pool is used for random characters during the effect.
+   * Use ShuffleText.MODE constants to set this value.
+   * @default ShuffleText.MODE.CHARS
+   */
   public characterMode: 'chars' | 'ranges' | 'mixed' = ShuffleText.MODE.CHARS;
+  /**
+   * Unicode code point ranges to draw from when characterMode is RANGES or MIXED.
+   * Each entry is a [start, end] inclusive tuple. Use ShuffleText.RANGES presets or provide custom tuples.
+   * @default []
+   */
   public unicodeRanges: [number, number][] = [];
 
   private _isRunning: boolean = false;
@@ -160,6 +179,7 @@ export default class ShuffleText {
     }
 
     if (mode === ShuffleText.MODE.MIXED && hasRanges) {
+      // 50/50 split: proportional weighting would make sourceRandomCharacter invisible with large CJK ranges
       return Math.random() < 0.5
         ? this._randomCharFromRanges()
         : this.sourceRandomCharacter.charAt(
