@@ -42,6 +42,8 @@ export default class ShuffleText {
    * @default 600
    */
   public duration: number = 600;
+  public characterMode: 'chars' | 'ranges' | 'mixed' = ShuffleText.MODE.CHARS;
+  public unicodeRanges: [number, number][] = [];
 
   private _isRunning: boolean = false;
   private _originalStr: string = "";
@@ -133,6 +135,43 @@ export default class ShuffleText {
     this._requestAnimationFrameId = 0;
   }
 
+  private _randomCharFromRanges(): string {
+    const total = this.unicodeRanges.reduce((sum, r) => sum + r[1] - r[0] + 1, 0);
+    let pick = Math.floor(Math.random() * total);
+    for (const range of this.unicodeRanges) {
+      const size = range[1] - range[0] + 1;
+      if (pick < size) return String.fromCodePoint(range[0] + pick);
+      pick -= size;
+    }
+    return String.fromCodePoint(this.unicodeRanges[this.unicodeRanges.length - 1][1]);
+  }
+
+  /** @internal */
+  public _getRandomChar(): string {
+    const mode = this.characterMode;
+    const hasRanges = this.unicodeRanges.length > 0;
+
+    if (mode === ShuffleText.MODE.RANGES) {
+      return hasRanges
+        ? this._randomCharFromRanges()
+        : this.sourceRandomCharacter.charAt(
+            Math.floor(Math.random() * this.sourceRandomCharacter.length)
+          );
+    }
+
+    if (mode === ShuffleText.MODE.MIXED && hasRanges) {
+      return Math.random() < 0.5
+        ? this._randomCharFromRanges()
+        : this.sourceRandomCharacter.charAt(
+            Math.floor(Math.random() * this.sourceRandomCharacter.length)
+          );
+    }
+
+    return this.sourceRandomCharacter.charAt(
+      Math.floor(Math.random() * this.sourceRandomCharacter.length)
+    );
+  }
+
   /**
    * インターバルハンドラーです。
    */
@@ -147,9 +186,7 @@ export default class ShuffleText {
       } else if (percent < this._randomIndex[i] / 3) {
         str += this.emptyCharacter;
       } else {
-        str += this.sourceRandomCharacter.charAt(
-          Math.floor(Math.random() * this.sourceRandomCharacter.length),
-        );
+        str += this._getRandomChar();
       }
     }
 
